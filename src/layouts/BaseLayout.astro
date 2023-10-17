@@ -1,0 +1,29 @@
+---
+import '../styles/global.css'
+
+interface Props {
+  title: string
+}
+
+const { title } = Astro.props
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+    <title>{title}</title>
+    <slot name="head" />
+	</head>
+	<body>
+    <div class="content">
+    <slot />
+    </div>
+  </body>
+
+  <style>
+    .content {
+      flex: 1;
+      padding: 2rem;
+    }
+  </style>
+</html>
