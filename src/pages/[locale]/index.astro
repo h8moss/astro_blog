@@ -1,0 +1,19 @@
+---
+import type { GetStaticPaths } from "astro";
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import locales from '../../i18n/locales';
+import type { UiTitles } from "../../i18n/ui";
+import { withLocale } from "../../i18n/util";
+import type { Locale } from "../../i18n/types";
+
+export const getStaticPaths = (() => {
+  return locales.map((locale) => ({params: {locale}}));
+}) satisfies GetStaticPaths;
+
+const i18n = (name: UiTitles) => withLocale(Astro.params.locale as Locale, name);
+
+---
+
+<BaseLayout title="Daniel Armenta's blog">
+  <h1>{i18n('index.title')}</h1>
+</BaseLayout>

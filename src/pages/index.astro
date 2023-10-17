@@ -1,12 +1,8 @@
 ---
-import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
+import BaseLayout from "../layouts/BaseLayout.astro";
 ---
 
-<!doctype html>
-<html lang="en">
-	<head>
-		<title>Daniel Armenta's blog</title>
-	</head>
-	<body>
-</body>
-</html>
+<BaseLayout title="redirecting...">
+<meta slot="head" http-equiv="refresh" content="0;url=/en/" />
+
+</BaseLayout>
