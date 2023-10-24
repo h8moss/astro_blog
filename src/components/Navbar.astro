@@ -1,0 +1,33 @@
+---
+import ThemePicker from "./ThemePicker.svelte";
+---
+
+<nav>
+	<div class="links">
+		<a href="/">Home</a>
+		<a href="http://daniel-armenta.com">Blog</a>
+	</div>
+	<ThemePicker client:visible />
+</nav>
+
+<style lang="scss">
+	nav {
+		display: flex;
+		justify-content: space-between;
+
+		padding: 1.5rem;
+
+		box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+		z-index: 99;
+
+		.links > a {
+			margin-right: 2rem;
+			color: var(--highlight);
+			text-decoration: none;
+
+			&:hover {
+				text-decoration: underline;
+			}
+		}
+	}
+</style>

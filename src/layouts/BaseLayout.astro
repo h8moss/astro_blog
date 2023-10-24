@@ -1,29 +1,35 @@
 ---
-import '../styles/global.css'
+import "../styles/global.css";
+import Navbar from "../components/Navbar.astro";
 
 interface Props {
-  title: string
+	title: string;
+	padding: number;
 }
 
-const { title } = Astro.props
+const { title, padding = 2 } = Astro.props;
 ---
 
 <!doctype html>
 <html lang="en">
 	<head>
-    <title>{title}</title>
-    <slot name="head" />
+		<meta charset="utf-8" />
+		<title>{title}</title>
+		<slot name="head" />
 	</head>
 	<body>
-    <div class="content">
-    <slot />
-    </div>
-  </body>
+		<Navbar />
+		<div class="content" style={"--padding:" + padding + "rem"} }>
+			<slot />
+		</div>
+	</body>
 
-  <style>
-    .content {
-      flex: 1;
-      padding: 2rem;
-    }
-  </style>
+	<style>
+		.content {
+			flex: 1;
+			padding: var(--padding);
+
+			overflow-x: hidden;
+		}
+	</style>
 </html>
