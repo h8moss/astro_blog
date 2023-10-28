@@ -1,29 +1,43 @@
+:root[data-theme="light"] {
+  --text: #17022c;
+  --background: #f8f1fe;
+  --primary: #b879f6;
+  --secondary: #e3dfe7;
+  --accent: #d1d10a;
+}
+:root[data-theme="dark"] {
+  --text: #e8d3fd;
+  --background: #08010e;
+  --primary: #470986;
+  --secondary: #1c1820;
+  --accent: #f5f52e;
+}
+
 html {
-  height: 100vh;
-  width: 100vw;
-  padding: 0px;
-  margin: 0px;
+	height: 100vh;
+	width: 100vw;
+	padding: 0px;
+	margin: 0px;
 }
 
 body {
-  min-height: 100%;
-  width: 100%;
+	min-height: 100%;
+	width: 100%;
 
-  overflow-x: hidden;
+	overflow-x: hidden;
 
-  padding: 0px;
-  margin: 0px;
+	padding: 0px;
+	margin: 0px;
 
-  background-color: #202020;
-  color: white;
+	font-family: sans-serif;
 
-  font-family: sans-serif;
-
-  display: flex;
+	background-color: var(--background);
+	color: var(--text)
 }
 
-p {
-  font-size: 2rem;
+p,
+body {
+	font-size: 2rem;
 }
 
 h1,
@@ -32,33 +46,39 @@ h3,
 h4,
 h5,
 h6,
-p {
-  font-weight: normal;
-  padding: 0px;
-  margin: 0px;
+p,
+span {
+	font-weight: normal;
+	padding: 0px;
+	margin: 0px;
 }
 
 h1 {
-  font-size: 5rem;
-  text-align: center;
+	font-size: 5rem;
+	text-align: center;
+	margin: 1rem;
 }
 
 h2 {
-  font-size: 4.5rem;
+	font-size: 4.5rem;
 }
 
 h3 {
-  font-size: 4rem;
+	font-size: 4rem;
 }
 
 h4 {
-  font-size: 3.5rem;
+	font-size: 3.5rem;
 }
 
 h5 {
-  font-size: 3rem;
+	font-size: 3rem;
 }
 
 h6 {
-  font-size: 2.5rem;
+	font-size: 2.5rem;
+}
+
+a, button {
+	cursor: pointer;
 }

@@ -5,18 +5,25 @@ const { frontmatter } = Astro.props
 ---
 
 <BaseLayout title={frontmatter.title + ' | blog.daniel-armenta.com'} padding={0}>
-  <img src={frontmatter.heroImage}/>
+  <img src={frontmatter.heroImage} transition:name={frontmatter.heroImage}/>
   <img src={frontmatter.heroImage} class="invisible"/>
+  <div class="bg">
   <div class="content">
     <p class='published'>Published {frontmatter.pubDate}</p>
     <h1>{frontmatter.title}</h1>
     <slot />
   </div>
+</div>
 
   <Fragment slot="head">
   <style lang="scss">
+      .bg {
+        background-color: var(--background);
+      }
+
       .content {
-        background-color:white;
+        width: clamp(200px, 90%, 800px);
+        margin: 0px auto;
         padding: 1.5rem;
 
         :global(p) {
@@ -24,7 +31,7 @@ const { frontmatter } = Astro.props
         }
 
         :global(h1, h2, h3, h4, h5, h6) {
-          color: var(--highlight);
+          color: var(--accent);
         }
 
         :global(table, tr, td, th) {
@@ -39,8 +46,7 @@ const { frontmatter } = Astro.props
         }
 
         :global(thead) {
-          background-color: var(--highlight);
-          color: white;
+          background-color: var(--primary);
         }
 
         :global(img) {
@@ -51,17 +57,22 @@ const { frontmatter } = Astro.props
         :global(pre) {
           padding: 2rem;
           margin: 1rem;
-          border-radius: 2rem;
+          border-radius: 0.5rem;
+          font-size: medium;
+        }
+
+        :global(a) {
+          color: var(--primary)
         }
 
         :global(blockquote) {
-          border-left: 1px solid var(--highlight);
+          border-left: 1px solid var(--primary);
           padding: 1.5rem;
           margin: 0.5px;
         }
 
         :global(li::marker) {
-          color: var(--highlight);
+          color: var(--accent);
         }
       }
 
