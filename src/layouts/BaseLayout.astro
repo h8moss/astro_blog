@@ -1,10 +1,11 @@
 ---
 import "../styles/global.css";
 import Navbar from "../components/Navbar.astro";
+import { ViewTransitions } from "astro:transitions";
 
 interface Props {
 	title: string;
-	padding: number;
+	padding?: number;
 }
 
 const { title, padding = 2 } = Astro.props;
@@ -16,6 +17,7 @@ const { title, padding = 2 } = Astro.props;
 		<meta charset="utf-8" />
 		<title>{title}</title>
 		<slot name="head" />
+		<ViewTransitions />
 	</head>
 	<body>
 		<Navbar />
@@ -32,4 +34,15 @@ const { title, padding = 2 } = Astro.props;
 			overflow-x: hidden;
 		}
 	</style>
+
+	<script>
+		const getTheme = () => {
+			let theme = localStorage?.getItem('theme') || 'light';
+			document.documentElement.setAttribute('data-theme', theme)
+		};
+		getTheme();
+		document.addEventListener('astro:after-swap', getTheme);
+	</script>
+
 </html>
+ 
