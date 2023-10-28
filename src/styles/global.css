@@ -1,3 +1,13 @@
+:root {
+	--text: #806B95;
+	--background: #807986;
+	--primary: #8041BE;
+	--secondary: #807C84;
+	--accent: #E3E31C;
+
+}
+
+
 :root[data-theme="light"] {
   --text: #17022c;
   --background: #f8f1fe;
@@ -11,6 +21,12 @@
   --primary: #470986;
   --secondary: #1c1820;
   --accent: #f5f52e;
+}
+
+* {
+	transition-duration: 150ms;
+	transition-property: background-color, color;
+	transition-timing-function: cubic-bezier(0.165, 0.84, 0.44, 1);
 }
 
 html {
