@@ -2,8 +2,8 @@
 	"name": "markdown-plugins",
 	"version": "1.0.0",
 	"description": "",
-	"main": "lib/index.js",
-	"types": "lib/index.d.ts",
+	"main": "lib/src/index.js",
+	"types": "lib/src/index.d.ts",
 	"type": "module",
 	"module": "commonJS",
 	"files": [
