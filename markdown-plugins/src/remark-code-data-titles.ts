@@ -1,7 +1,6 @@
 import { visit } from "unist-util-visit";
 import { Plugin, Transformer } from "unified";
-import type { Root } from "remark-directive/lib";
-import type { Code } from "mdast";
+import type { Root, Code, CodeData } from "mdast";
 
 const getLangAndTitle = (
 	node: Code
@@ -43,7 +42,7 @@ To add a `data-title="my code"` attribute to the code html code block
 const remarkCodeDataTitles: Plugin<[], Root> = () => {
 	const transform: Transformer<Root> = (tree) => {
 		visit(tree, "code", (node) => {
-			const data = node.data || (node.data = {});
+			const data = node.data || ((node.data = {}) as any);
 			const properties = data.hProperties || (data.hProperties = {});
 
 			const [lang, title] = getLangAndTitle(node);
