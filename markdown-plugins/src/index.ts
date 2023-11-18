@@ -1,4 +1,10 @@
 import remarkCodeDataTitles from "./remark-code-data-titles.js";
+import remarkAddMissingCodeTitles from "./remark-add-missing-code-titles.js";
+
 import rehypeCodeAddTitles from "./rehype-code-add-titles.js";
 
-export { remarkCodeDataTitles, rehypeCodeAddTitles };
+export {
+	remarkCodeDataTitles,
+	remarkAddMissingCodeTitles,
+	rehypeCodeAddTitles
+};
