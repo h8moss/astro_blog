@@ -1,11 +1,13 @@
 ---
 import ThemePicker from "./ThemePicker.svelte";
+
+const {locale} = Astro.params;
 ---
 
 <nav transition:persist>
 	<div class="links">
 		<a href="http://daniel-armenta.com">Home</a>
-		<a href="/">Blog</a>
+		<a href={`/${locale}`}>Blog</a>
 	</div>
 	<ThemePicker client:visible/>
 </nav>
