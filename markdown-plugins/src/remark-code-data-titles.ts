@@ -1,6 +1,6 @@
 import { visit } from "unist-util-visit";
 import { Plugin, Transformer } from "unified";
-import type { Root, Code, CodeData } from "mdast";
+import type { Root, Code } from "mdast";
 
 const getLangAndTitle = (
 	node: Code
