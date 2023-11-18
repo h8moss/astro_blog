@@ -1,26 +1,27 @@
 :root {
-	--text: #806B95;
+	--text: #806b95;
 	--background: #807986;
-	--primary: #8041BE;
-	--secondary: #807C84;
-	--accent: #E3E31C;
+	--primary: #8041be;
+	--secondary: #807c84;
+	--accent: #e3e31c;
 
+	--code-bg: #202050;
+	--code-color: #e8d3fd;
 }
-
 
 :root[data-theme="light"] {
-  --text: #17022c;
-  --background: #f8f1fe;
-  --primary: #b879f6;
-  --secondary: #e3dfe7;
-  --accent: #d1d10a;
+	--text: #17022c;
+	--background: #f8f1fe;
+	--primary: #b879f6;
+	--secondary: #e3dfe7;
+	--accent: #d1d10a;
 }
 :root[data-theme="dark"] {
-  --text: #e8d3fd;
-  --background: #08010e;
-  --primary: #470986;
-  --secondary: #1c1820;
-  --accent: #f5f52e;
+	--text: #e8d3fd;
+	--background: #08010e;
+	--primary: #470986;
+	--secondary: #1c1820;
+	--accent: #f5f52e;
 }
 
 * {
@@ -48,7 +49,7 @@ body {
 	font-family: sans-serif;
 
 	background-color: var(--background);
-	color: var(--text)
+	color: var(--text);
 }
 
 p,
@@ -95,6 +96,7 @@ h6 {
 	font-size: 2.5rem;
 }
 
-a, button {
+a,
+button {
 	cursor: pointer;
 }
