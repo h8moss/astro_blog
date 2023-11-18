@@ -18,8 +18,10 @@
     "@types/react": "^18.2.29",
     "@types/react-dom": "^18.2.13",
     "astro": "^3.3.0",
+    "markdown-plugins": "file:markdown-plugins",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "rehype-shiki": "^0.0.9",
     "sass": "^1.69.4",
     "svelte": "^4.2.2"
   },
