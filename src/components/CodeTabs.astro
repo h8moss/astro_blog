@@ -1,0 +1,96 @@
+---
+const id = "_" + Math.random().toString(32).slice(2, 11);
+---
+
+<div class="tabs" data-code-tabs-id={id}>
+	<slot />
+</div>
+
+<style lang="scss">
+	.tabs {
+		margin-top: 1rem;
+
+		:global(*.hidden) {
+			display: none;
+		}
+
+		:global(div.code-container > p) {
+			display: none;
+		}
+
+		:global(.code-container) {
+			margin: 0px;
+		}
+
+		:global(.buttons) {
+			display: flex;
+
+			:global(button) {
+				padding: 0.25rem;
+				min-width: 3rem;
+				border: 0px;
+				margin-right: 0.25rem;
+
+				border-top-right-radius: 0.25rem;
+				border-top-left-radius: 0.25rem;
+
+				background-color: #101025;
+				color: var(--code-color);
+
+				font-size: 1rem;
+			}
+
+			:global(button.selected) {
+				background-color: var(--code-bg);
+			}
+		}
+	}
+</style>
+
+<script define:vars={{ id }}>
+	let visible = 0;
+	let codeTabsElement = document.querySelector(`div[data-code-tabs-id=${id}]`);
+	let codeTabsChildren = document.querySelectorAll(
+		`div[data-code-tabs-id=${id}] > div`
+	);
+
+	let buttonsDiv = document.createElement("div");
+	buttonsDiv.classList = ["buttons"];
+
+	const hideNotVisible = () => {
+		const buttons = document.querySelectorAll(
+			`div[data-code-tabs-id=${id}] > div.buttons > *`
+		);
+
+		for (let i = 0; i < codeTabsChildren.length; i++) {
+			if (i == visible) {
+				codeTabsChildren[i].classList.remove("hidden");
+				if (buttons.length) buttons[i].classList.add("selected");
+			} else {
+				codeTabsChildren[i].classList.add("hidden");
+				if (buttons.length) buttons[i].classList.remove("selected");
+			}
+		}
+	};
+
+	hideNotVisible();
+
+	for (let i = 0; i < codeTabsChildren.length; i++) {
+		const button = document.createElement("button");
+		if (i === 0) {
+			button.classList = ["selected"];
+		}
+		button.textContent =
+			codeTabsChildren[i].children[1].children[0].getAttribute("data-title");
+		button.addEventListener("click", () => {
+			console.log({ visible, aa: "vv" });
+			visible = i;
+
+			hideNotVisible();
+		});
+
+		buttonsDiv.appendChild(button);
+	}
+
+	codeTabsElement.insertBefore(buttonsDiv, codeTabsElement.children[0]);
+</script>
