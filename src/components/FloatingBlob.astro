@@ -1,0 +1,73 @@
+---
+let x = 0;
+let y = 0;
+---
+
+<div data-floating-blob class='blob' />
+<div class='blur' />
+
+<style>
+
+@keyframes rotate {
+  from {
+    rotate: 0deg;
+  }
+  to {
+    rotate: 360deg;
+  }
+}
+
+  div.blob {
+    height: 40vh;
+    aspect-ratio: 1;
+    background: linear-gradient(to left, var(--primary), var(--accent));
+    position: fixed;
+
+    top: 50%;
+    left: 50%;
+    translate: -50% -50%;
+
+    border-radius: 50%;
+
+    z-index: -3;
+
+    animation: rotate 20s infinite;
+  }
+
+  div.blur {
+    height: 100vh;
+    width: 100vw;
+    position: fixed;
+
+    backdrop-filter: blur(200px);
+
+    z-index:-1;
+  }
+
+  @media (max-width: 800px) {
+    div {
+      display: none;
+      opacity: 0;
+    }
+  }
+</style>
+
+<script>
+  let x=0;
+  let y=0;
+  document.addEventListener('mousemove', (e) => {
+    x=e.clientX;
+    y=e.clientY;
+
+    const blob = document.querySelector('[data-floating-blob]')
+
+    if (blob) {
+      blob.animate({
+        left: `${x}px`,
+        top: `${y}px`,
+      }, {
+        duration: 1000, fill: 'forwards'
+      })
+    }
+  })
+</script>

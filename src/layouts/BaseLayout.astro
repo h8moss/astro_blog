@@ -1,6 +1,7 @@
 ---
 import "../styles/global.css";
 import Navbar from "../components/Navbar.astro";
+import FloatingBlob from '../components/FloatingBlob.astro';
 import { ViewTransitions } from "astro:transitions";
 
 interface Props {
@@ -21,6 +22,8 @@ const { title, padding = 2 } = Astro.props;
 	</head>
 	<body>
 		<Navbar />
+
+  <FloatingBlob />
 		<div class="content" style={"--padding:" + padding + "rem"} }>
 			<slot />
 		</div>
