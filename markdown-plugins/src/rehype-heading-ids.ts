@@ -29,6 +29,12 @@ const intoID = (text: string) => {
 	return id;
 };
 
+/**
+ * Adds an anchor element with an image and an href to this element's id
+ * @param parameter The only parameter passed is an object with the following keys:
+ * * `anchorImgSrc: string`, the source of the image inside the anchor
+ * * `anchorImgSize: number`, the size of the image inside the anchor
+ */
 const rehypeHeadingIds: Plugin<[Props], Root> = ({
 	anchorImgSrc,
 	anchorImgSize = 16
@@ -37,11 +43,14 @@ const rehypeHeadingIds: Plugin<[Props], Root> = ({
 		visit(tree, isHeading, (node) => {
 			const element = node as Element;
 
-			if (element.properties.id) return;
-
-			const content = toString(element);
-			const contentId = intoID(content);
-			let id = contentId;
+			let id = "";
+			if (!element.properties.id) {
+				const content = toString(element);
+				const contentId = intoID(content);
+				id = contentId;
+			} else {
+				id = element.properties.id as string;
+			}
 
 			element.children = [
 				h(
@@ -53,7 +62,7 @@ const rehypeHeadingIds: Plugin<[Props], Root> = ({
 						height: anchorImgSize
 					})
 				),
-				h(element.tagName, element.properties, element.children)
+				h(element.tagName, element.children)
 			];
 
 			element.properties = { id, class: "heading-div" };
