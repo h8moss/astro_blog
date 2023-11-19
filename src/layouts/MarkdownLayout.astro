@@ -20,6 +20,10 @@ const { frontmatter } = Astro.props;
 
 	<Fragment slot="head">
 		<style lang="scss">
+			html {
+				scroll-behavior: smooth;
+			}
+
 			.bg {
 				background-color: var(--background);
 			}
@@ -119,6 +123,38 @@ const { frontmatter } = Astro.props;
 
 			p.published {
 				opacity: 0.6;
+			}
+
+			:global(div.heading-div) {
+				display: flex;
+
+				:global(a) {
+					display: flex;
+					opacity: 0;
+
+					transition-property: opacity;
+
+					:global(img) {
+						margin: auto;
+					}
+				}
+
+				&:hover {
+					:global(a) {
+						opacity: 1;
+					}
+				}
+			}
+			:global(:root[data-theme="light"]) {
+				:global(div.heading-div > a > img) {
+					filter: hue-rotate(70deg) saturate(70%) brightness(2.5);
+				}
+			}
+
+			:global(:root[data-theme="dark"]) {
+				:global(div.heading-div > a > img) {
+					filter: hue-rotate(60deg) saturate(60%) brightness(4);
+				}
 			}
 		</style>
 	</Fragment>
