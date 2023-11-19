@@ -3,6 +3,13 @@ import { Plugin, Transformer } from "unified";
 import type { Root } from "mdast";
 import langsIndex from "../public/langs-index.json" assert { type: "json" };
 
+/**
+Finds all codeblocks with no title or title equal to language and adds a
+human-readable interpretation of the language as the title. Example
+
+js => JavaScript
+cpp => C++
+ */
 const remarkAddMissingCodeTitles: Plugin<[], Root> = () => {
 	const transform: Transformer<Root> = (tree) => {
 		visit(tree, "code", (node) => {
