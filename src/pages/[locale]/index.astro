@@ -1,69 +1,74 @@
 ---
 import type { GetStaticPaths } from "astro";
-import BaseLayout from '../../layouts/BaseLayout.astro';
-import locales from '../../i18n/locales';
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import locales from "../../i18n/locales";
 import type { UiTitles } from "../../i18n/ui";
 import { withLocale } from "../../i18n/util";
 import type { Locale } from "../../i18n/types";
 import { getCollection } from "astro:content";
+import FloatingBlob from "../../components/FloatingBlob.astro";
 
 export const getStaticPaths = (() => {
-  return locales.map((locale) => ({params: {locale}}));
+	return locales.map((locale) => ({ params: { locale } }));
 }) satisfies GetStaticPaths;
 
-const i18n = (name: UiTitles) => withLocale(Astro.params.locale as Locale, name);
+const i18n = (name: UiTitles) =>
+	withLocale(Astro.params.locale as Locale, name);
 
 // Get blogs in current language or all if params.locale is null
-const blogs = await getCollection('blog', ({id}) => 
-  !Astro.params.locale 
-  || id.startsWith(Astro.params.locale));
-
+const blogs = await getCollection(
+	"blog",
+	({ id }) => !Astro.params.locale || id.startsWith(Astro.params.locale)
+);
 ---
 
 <BaseLayout title="Daniel Armenta's blog">
-  <h1>{i18n('index.title')}</h1>
-  <div class="blog-list">
-    {blogs.map(v => 
-      <a class="card" href={'/'+v.id}>
-        <img src={v.data.heroImage} transition:name={v.data.heroImage}/>
-        <span>{v.data.title}</span>
-      </a>
-    )}
-  </div>
+	<FloatingBlob slot="before-content" />
 
-  <style>
-      .blog-list {
-      margin: auto;
+	<h1>{i18n("index.title")}</h1>
+	<div class="blog-list">
+		{
+			blogs.map((v) => (
+				<a class="card" href={"/" + v.id}>
+					<img src={v.data.heroImage} transition:name={v.data.heroImage} />
+					<span>{v.data.title}</span>
+				</a>
+			))
+		}
+	</div>
 
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
-      gap: 1rem;
-    }
+	<style>
+		.blog-list {
+			margin: auto;
 
-    .card {
-      flex-direction: column;
+			display: grid;
+			grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+			gap: 1rem;
+		}
 
-      color: var(--text);
-      background-color: var(--primary);
+		.card {
+			flex-direction: column;
 
-      text-decoration: none;
+			color: var(--text);
+			background-color: var(--primary);
 
-      padding: 2rem;
-      box-shadow: rgba(0, 0, 0, 0.3) 0px 4px 12px;
+			text-decoration: none;
 
-      font-size: 2.5rem;
+			padding: 2rem;
+			box-shadow: rgba(0, 0, 0, 0.3) 0px 4px 12px;
 
-      border-radius: 0.5rem;
-    }
+			font-size: 2.5rem;
 
-    .card:hover {
-      transform: scale(1.01); /*TODO: Make a nicer hover effect */
-    }
+			border-radius: 0.5rem;
+		}
 
-    .card > img {
-      width: 100%;
-      max-height: 500px;
-    }
-  </style>
+		.card:hover {
+			transform: scale(1.01); /*TODO: Make a nicer hover effect */
+		}
+
+		.card > img {
+			width: 100%;
+			max-height: 500px;
+		}
+	</style>
 </BaseLayout>
-

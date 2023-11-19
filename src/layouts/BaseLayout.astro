@@ -1,7 +1,6 @@
 ---
 import "../styles/global.css";
 import Navbar from "../components/Navbar.astro";
-import FloatingBlob from '../components/FloatingBlob.astro';
 import { ViewTransitions } from "astro:transitions";
 
 interface Props {
@@ -23,29 +22,26 @@ const { title, padding = 2 } = Astro.props;
 	<body>
 		<Navbar />
 
-  <FloatingBlob />
+		<slot name="before-content" />
 		<div class="content" style={"--padding:" + padding + "rem"} }>
 			<slot />
 		</div>
+		<style>
+			.content {
+				flex: 1;
+				padding: var(--padding);
+
+				overflow-x: hidden;
+			}
+		</style>
+
+		<script>
+			const getTheme = () => {
+				let theme = localStorage?.getItem("theme") || "light";
+				document.documentElement.setAttribute("data-theme", theme);
+			};
+			getTheme();
+			document.addEventListener("astro:after-swap", getTheme);
+		</script>
 	</body>
-
-	<style>
-		.content {
-			flex: 1;
-			padding: var(--padding);
-
-			overflow-x: hidden;
-		}
-	</style>
-
-	<script>
-		const getTheme = () => {
-			let theme = localStorage?.getItem('theme') || 'light';
-			document.documentElement.setAttribute('data-theme', theme)
-		};
-		getTheme();
-		document.addEventListener('astro:after-swap', getTheme);
-	</script>
-
 </html>
- 
