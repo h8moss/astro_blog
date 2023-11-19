@@ -34,8 +34,6 @@ const rehypeCodeAddTitles: Plugin<[], Root> = () => {
 
 			if (!title || typeof title !== "string") return;
 
-			console.log({ node, title, child, count: 2 });
-
 			node.tagName = "div";
 			node.properties["class"] = "code-container";
 			node.children = [h("p", title), h("pre", child)];

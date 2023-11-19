@@ -83,7 +83,6 @@ const id = "_" + Math.random().toString(32).slice(2, 11);
 		button.textContent =
 			codeTabsChildren[i].children[1].children[0].getAttribute("data-title");
 		button.addEventListener("click", () => {
-			console.log({ visible, aa: "vv" });
 			visible = i;
 
 			hideNotVisible();
