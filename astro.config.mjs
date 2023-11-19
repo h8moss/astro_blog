@@ -3,7 +3,7 @@ import mdx from '@astrojs/mdx';
 import sitemap from '@astrojs/sitemap';
 import react from "@astrojs/react";
 import svelte from "@astrojs/svelte";
-import { remarkCodeDataTitles, rehypeCodeAddTitles, remarkAddMissingCodeTitles, rehypeHeadingIds } from 'markdown-plugins'
+import { remarkCodeDataTitles, rehypeCodeAddTitles, remarkAddMissingCodeTitles, rehypeHeadingIds, rehypeCopyCodeButton } from 'markdown-plugins'
 import rehypeShiki from 'rehype-shiki';
 
 const defaultMarkdownLayout = () => {
@@ -30,7 +30,8 @@ export default defineConfig({
       [rehypeShiki, {
         useBackground: false,
         theme: 'monokai'
-      }] // Add custom syntax highlighting
+      }], // Add custom syntax highlighting
+      rehypeCopyCodeButton
     ],
     syntaxHighlight: false, // Astro's syntax highlight kills rehypeCodeAddTitles
   }

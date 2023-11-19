@@ -66,6 +66,26 @@ const { frontmatter } = Astro.props;
 					margin: 1rem;
 					border-radius: 0.5rem;
 					font-size: medium;
+
+					position: relative;
+
+					:global(button.copy-button) {
+						color: var(--code-color);
+						font-family: monospace;
+						border: none;
+						padding: 0.25rem;
+						border-radius: 0.25rem;
+
+						position: absolute;
+						top: 0px;
+						right: 0px;
+
+						z-index: 999;
+
+						&:hover {
+							background-color: rgba(255, 255, 255, 0.2);
+						}
+					}
 				}
 
 				:global(a) {
@@ -157,5 +177,21 @@ const { frontmatter } = Astro.props;
 				}
 			}
 		</style>
+
+		<script>
+			const codeBlocks = document.querySelectorAll("pre");
+			for (const code of codeBlocks) {
+				const btn = code.children[code.children.length - 1];
+				const content = code.children[0].textContent;
+				btn.addEventListener("click", () => {
+					navigator.clipboard.writeText(content || "").then(() => {
+						btn.textContent = "Copied!";
+						setTimeout(() => {
+							btn.textContent = "Copy";
+						}, 5000);
+					});
+				});
+			}
+		</script>
 	</Fragment>
 </BaseLayout>
