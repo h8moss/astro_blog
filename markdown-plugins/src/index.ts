@@ -3,10 +3,12 @@ import remarkAddMissingCodeTitles from "./remark-add-missing-code-titles.js";
 
 import rehypeCodeAddTitles from "./rehype-code-add-titles.js";
 import rehypeHeadingIds from "./rehype-heading-ids.js";
+import rehypeCopyCodeButton from "./rehype-copy-code-button.js";
 
 export {
 	remarkCodeDataTitles,
 	remarkAddMissingCodeTitles,
 	rehypeCodeAddTitles,
-	rehypeHeadingIds
+	rehypeHeadingIds,
+	rehypeCopyCodeButton
 };
