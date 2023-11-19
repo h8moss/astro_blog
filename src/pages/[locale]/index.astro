@@ -7,6 +7,7 @@ import { withLocale } from "../../i18n/util";
 import type { Locale } from "../../i18n/types";
 import { getCollection } from "astro:content";
 import FloatingBlob from "../../components/FloatingBlob.astro";
+import Card from "../../components/Card.astro";
 
 export const getStaticPaths = (() => {
 	return locales.map((locale) => ({ params: { locale } }));
@@ -29,10 +30,10 @@ const blogs = await getCollection(
 	<div class="blog-list">
 		{
 			blogs.map((v) => (
-				<a class="card" href={"/" + v.id}>
+				<Card href={"/" + v.id}>
 					<img src={v.data.heroImage} transition:name={v.data.heroImage} />
 					<span>{v.data.title}</span>
-				</a>
+				</Card>
 			))
 		}
 	</div>
@@ -44,31 +45,6 @@ const blogs = await getCollection(
 			display: grid;
 			grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
 			gap: 1rem;
-		}
-
-		.card {
-			flex-direction: column;
-
-			color: var(--text);
-			background-color: var(--primary);
-
-			text-decoration: none;
-
-			padding: 2rem;
-			box-shadow: rgba(0, 0, 0, 0.3) 0px 4px 12px;
-
-			font-size: 2.5rem;
-
-			border-radius: 0.5rem;
-		}
-
-		.card:hover {
-			transform: scale(1.01); /*TODO: Make a nicer hover effect */
-		}
-
-		.card > img {
-			width: 100%;
-			max-height: 500px;
 		}
 	</style>
 </BaseLayout>
