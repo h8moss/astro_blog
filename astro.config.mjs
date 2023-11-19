@@ -3,7 +3,7 @@ import mdx from '@astrojs/mdx';
 import sitemap from '@astrojs/sitemap';
 import react from "@astrojs/react";
 import svelte from "@astrojs/svelte";
-import { remarkCodeDataTitles, rehypeCodeAddTitles, remarkAddMissingCodeTitles } from 'markdown-plugins'
+import { remarkCodeDataTitles, rehypeCodeAddTitles, remarkAddMissingCodeTitles, rehypeHeadingIds } from 'markdown-plugins'
 import rehypeShiki from 'rehype-shiki';
 
 const defaultMarkdownLayout = () => {
@@ -19,14 +19,19 @@ export default defineConfig({
   site: 'https://example.com',
   integrations: [mdx(), sitemap(), react(), svelte()],
   markdown: {
-    remarkPlugins: [defaultMarkdownLayout, remarkCodeDataTitles, remarkAddMissingCodeTitles],
+    remarkPlugins: [
+      defaultMarkdownLayout,
+      remarkCodeDataTitles,
+      remarkAddMissingCodeTitles
+    ],
     rehypePlugins: [
       rehypeCodeAddTitles,
+      [rehypeHeadingIds, { anchorImgSrc: '/link.png', anchorImgSize: 40 }],
       [rehypeShiki, {
         useBackground: false,
         theme: 'monokai'
       }] // Add custom syntax highlighting
     ],
-    syntaxHighlight: false, // Prism's syntax highlight kills rehypeCodeAddTitles
+    syntaxHighlight: false, // Astro's syntax highlight kills rehypeCodeAddTitles
   }
 });
