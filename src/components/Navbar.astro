@@ -1,7 +1,7 @@
 ---
 import ThemePicker from "./ThemePicker.svelte";
 
-const {locale} = Astro.params;
+const { locale } = Astro.params;
 ---
 
 <nav transition:persist>
@@ -9,7 +9,7 @@ const {locale} = Astro.params;
 		<a href="http://daniel-armenta.com">Home</a>
 		<a href={`/${locale}`}>Blog</a>
 	</div>
-	<ThemePicker client:visible/>
+	<ThemePicker client:visible />
 </nav>
 
 <style lang="scss">
@@ -29,14 +29,30 @@ const {locale} = Astro.params;
 
 		z-index: 100;
 
+		.links {
+			display: flex;
+		}
+
 		.links > a {
+			margin-top: auto;
+			margin-bottom: auto;
 			margin-right: 2rem;
+
 			color: var(--text);
 			text-decoration: none;
+
+			text-align: center;
+			height: min-content;
 
 			&:hover {
 				text-decoration: underline;
 			}
+		}
+	}
+
+	@media screen and (max-width: 500px) {
+		nav {
+			padding: 1rem;
 		}
 	}
 </style>
