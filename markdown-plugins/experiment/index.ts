@@ -6,6 +6,7 @@ import logger from "./logger.js";
 import rehypeCodeAddTitles from "../src/rehype-code-add-titles.js";
 import remarkAddMissingCodeTitles from "../src/remark-add-missing-code-titles.js";
 import rehypeHeadingIds from "../src/rehype-heading-ids.js";
+import rehypeCopyCodeButton from "../src/rehype-copy-code-button.js";
 
 const text = `
 # hello world
@@ -29,6 +30,7 @@ const file = await remark()
 	.use([logger])
 	.use(rehypeCodeAddTitles)
 	.use(rehypeStringify)
+	.use(rehypeCopyCodeButton)
 	.use(rehypeHeadingIds, { anchorImgSrc: "lmaoxd" })
 	.process(text);
 
