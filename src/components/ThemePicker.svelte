@@ -48,7 +48,8 @@
 
 		border-radius: 2rem;
 
-		box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset,
+		box-shadow:
+			rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset,
 			rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
 
 		background-color: var(--primary);
@@ -59,8 +60,22 @@
 			border-radius: 2rem;
 			background-color: var(--accent);
 
-			box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px,
+			box-shadow:
+				rgba(50, 50, 93, 0.25) 0px 13px 27px -5px,
 				rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+		}
+	}
+
+	@media screen and (max-width: 500px) {
+		button.parent {
+			height: 1.5rem;
+			width: 2.5rem;
+			padding: 0.25rem;
+
+			div.ball {
+				height: 1rem;
+				width: 1rem;
+			}
 		}
 	}
 </style>

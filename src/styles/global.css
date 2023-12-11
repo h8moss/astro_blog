@@ -5,6 +5,8 @@
 	--secondary: #807c84;
 	--accent: #e3e31c;
 
+	--accent-transparent: #807c8480;
+
 	--code-bg: #202050;
 	--code-color: #e8d3fd;
 }
@@ -15,6 +17,8 @@
 	--primary: #b879f6;
 	--secondary: #e3dfe7;
 	--accent: #d1d10a;
+
+	--accent-transparent: #d1d10a20;
 }
 :root[data-theme="dark"] {
 	--text: #e8d3fd;
@@ -22,6 +26,8 @@
 	--primary: #470986;
 	--secondary: #1c1820;
 	--accent: #f5f52e;
+
+	--accent-transparent: #f5f52e10;
 }
 
 * {
@@ -94,6 +100,27 @@ h5 {
 
 h6 {
 	font-size: 2.5rem;
+}
+
+@media screen and (max-width: 500px) {
+	h1 {
+		font-size: 3rem;
+	}
+	h2 {
+		font-size: 2.5rem;
+	}
+	h3 {
+		font-size: 2rem;
+	}
+	h4 {
+		font-size: 1.5rem;
+	}
+	h5,
+	h6,
+	p,
+	body {
+		font-size: 1rem;
+	}
 }
 
 a,

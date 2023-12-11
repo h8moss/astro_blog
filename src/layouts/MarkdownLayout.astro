@@ -62,7 +62,7 @@ const { frontmatter } = Astro.props;
 				}
 
 				:global(pre) {
-					padding: 2rem;
+					padding: 1.5rem;
 					margin: 1rem;
 					border-radius: 0.5rem;
 					font-size: medium;
@@ -86,6 +86,13 @@ const { frontmatter } = Astro.props;
 							background-color: rgba(255, 255, 255, 0.2);
 						}
 					}
+				}
+
+				:global(pre code) {
+					overflow: auto;
+					width: 100%;
+					display: block;
+					pad: 0.5rem;
 				}
 
 				:global(a) {
@@ -174,6 +181,29 @@ const { frontmatter } = Astro.props;
 			:global(:root[data-theme="dark"]) {
 				:global(div.heading-div > a > img) {
 					filter: hue-rotate(60deg) saturate(60%) brightness(4);
+				}
+			}
+
+			@media screen and (max-width: 500px) {
+				.content {
+					:global(h1, h2, h3, h4, h5, h6) {
+						margin: auto 0px;
+					}
+
+					:global(pre) {
+						padding: 0.6rem;
+					}
+
+					:global(.code-container) {
+						:global(p) {
+							font-size: 1rem;
+						}
+					}
+
+					:global(div.heading-div img) {
+						width: 20px;
+						height: 20px;
+					}
 				}
 			}
 		</style>
