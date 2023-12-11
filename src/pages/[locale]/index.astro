@@ -23,7 +23,7 @@ const blogs = await getCollection(
 );
 ---
 
-<BaseLayout title="Daniel Armenta's blog">
+<BaseLayout title={i18n("index.title")}>
 	<FloatingBlob slot="before-content" />
 
 	<h1>{i18n("index.title")}</h1>
@@ -33,6 +33,11 @@ const blogs = await getCollection(
 				<Card href={"/" + v.id}>
 					<img src={v.data.heroImage} transition:name={v.data.heroImage} />
 					<span>{v.data.title}</span>
+					<Fragment slot="tags">
+						{v.data.tags.map((t) => (
+							<span>{t}</span>
+						))}
+					</Fragment>
 				</Card>
 			))
 		}
@@ -43,7 +48,7 @@ const blogs = await getCollection(
 			margin: auto;
 
 			display: grid;
-			grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+			grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
 			gap: 1rem;
 		}
 	</style>

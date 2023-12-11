@@ -4,6 +4,9 @@ const { href } = Astro.props;
 
 <a href={href}>
 	<slot />
+	<div class="tags">
+		<slot name="tags" />
+	</div>
 </a>
 
 <style>
@@ -34,5 +37,34 @@ const { href } = Astro.props;
 	a > :global(img) {
 		width: 100%;
 		max-height: 500px;
+	}
+
+	div.tags {
+		display: flex;
+		width: 100%;
+		overflow: hidden;
+		flex-wrap: wrap;
+	}
+
+	div.tags :global(span) {
+		font-size: 1rem;
+		padding: 0.3rem;
+
+		color: var(--text);
+		background-color: var(--primary);
+		margin: 0.25rem;
+
+		border-radius: 1rem;
+	}
+
+	div.tags :global(span):hover {
+		background-color: var(--text);
+		color: var(--primary);
+	}
+
+	@media screen and (max-width: 500px) {
+		a {
+			padding: 0.5rem;
+		}
 	}
 </style>
