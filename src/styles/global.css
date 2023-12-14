@@ -19,6 +19,11 @@
 	--accent: #d1d10a;
 
 	--accent-transparent: #d1d10a20;
+
+	--callout-red: rgb(229, 47, 47);
+	--callout-green: rgb(50, 237, 50);
+	--callout-blue: rgb(66, 66, 255);
+	--callout-cyan: rgb(65, 255, 255);
 }
 :root[data-theme="dark"] {
 	--text: #e8d3fd;
@@ -28,6 +33,11 @@
 	--accent: #f5f52e;
 
 	--accent-transparent: #f5f52e10;
+
+	--callout-red: rgb(206, 0, 0);
+	--callout-green: rgb(0, 203, 0);
+	--callout-blue: rgb(0, 0, 211);
+	--callout-cyan: rgb(0, 202, 202);
 }
 
 * {

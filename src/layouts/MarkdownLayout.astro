@@ -110,7 +110,7 @@ const { frontmatter } = Astro.props;
 				}
 
 				:global(.code-container) {
-					margin-top: 1rem;
+					margin: 1rem auto;
 
 					:global(*) {
 						background-color: var(--code-bg);
@@ -131,6 +131,65 @@ const { frontmatter } = Astro.props;
 						font-size: 1.5rem;
 					}
 				}
+
+				:global(div.callout) {
+					background-color: var(--primary);
+					padding: 1rem;
+					border-radius: 1rem;
+					margin: 10px auto;
+				}
+
+				:global(div.callout)::before {
+					content: attr(data-title);
+					font-size: 1.2rem;
+				}
+
+				:global(div.callout:not([data-title]))::before {
+					content: "Note:";
+				}
+
+				:global(div.callout.blue) {
+					background-color: var(--callout-blue);
+					color: #ddd;
+				}
+
+				:global(div.callout.red) {
+					background-color: var(--callout-red);
+				}
+
+				:global(div.callout.green) {
+					background-color: var(--callout-green);
+					color: #202020;
+				}
+
+				:global(div.callout.cyan) {
+					background-color: var(--callout-cyan);
+					color: #202020;
+				}
+
+				:global(div.callout.primary) {
+					background-color: var(--primary);
+				}
+
+				:global(div.callout.secondary) {
+					background-color: var(--secondary);
+				}
+
+				:global(div.callout.accent) {
+					background-color: var(--accent);
+					color: #202020;
+				}
+
+				/*
+					- Note primary
+					- Info blue
+					- Question blue
+					- Summary cyan
+					- Danger red
+					- Tip cyan
+					- Success green
+					- Example yellow
+				*/
 			}
 
 			h1 {

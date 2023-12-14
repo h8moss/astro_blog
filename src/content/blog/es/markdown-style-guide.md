@@ -99,15 +99,15 @@ we can use 3 backticks ``` in new line and write snippet and close with 3 backti
 
 ````markdown
 ```html
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <title>Example HTML5 Document</title>
-  </head>
-  <body>
-    <p>Test</p>
-  </body>
+	<head>
+		<meta charset="utf-8" />
+		<title>Example HTML5 Document</title>
+	</head>
+	<body>
+		<p>Test</p>
+	</body>
 </html>
 ```
 ````
@@ -115,15 +115,15 @@ we can use 3 backticks ``` in new line and write snippet and close with 3 backti
 Output
 
 ```html
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <title>Example HTML5 Document</title>
-  </head>
-  <body>
-    <p>Test</p>
-  </body>
+	<head>
+		<meta charset="utf-8" />
+		<title>Example HTML5 Document</title>
+	</head>
+	<body>
+		<p>Test</p>
+	</body>
 </html>
 ```
 
@@ -212,3 +212,81 @@ X<sup>n</sup> + Y<sup>n</sup> = Z<sup>n</sup>
 Press <kbd><kbd>CTRL</kbd>+<kbd>ALT</kbd>+<kbd>Delete</kbd></kbd> to end the session.
 
 Most <mark>salamanders</mark> are nocturnal, and hunt for insects, worms, and other small creatures.
+
+## Callouts
+
+This is a new function of markdown I added:
+
+```md
+:::callout
+lmaooooo
+:::
+```
+
+turns into:
+
+:::callout{v=lmao}
+lmaooooo
+:::
+
+We can also change the background color and the title of the callout:
+
+```md
+:::callout{.blue t="Some title"}
+Something nice to know
+:::
+
+:::callout{.red t=xd}
+Something dangerous
+:::
+
+:::callout{.green}
+Something successful
+:::
+
+:::callout{.cyan}
+Some tip
+:::
+
+:::callout{.primary}
+A primary
+:::
+
+:::callout{.secondary}
+A secondary
+:::
+
+:::callout{.accent}
+An accent
+:::
+```
+
+Turns into:
+
+:::callout{.blue t="Some title"}
+Something nice to know
+:::
+
+:::callout{.red t=xd}
+Something dangerous
+:::
+
+:::callout{.green}
+Something successful
+:::
+
+:::callout{.cyan}
+Some tip
+:::
+
+:::callout{.primary}
+A primary
+:::
+
+:::callout{.secondary}
+A secondary
+:::
+
+:::callout{.accent}
+An accent
+:::

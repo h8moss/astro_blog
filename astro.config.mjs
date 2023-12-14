@@ -3,8 +3,16 @@ import mdx from '@astrojs/mdx';
 import sitemap from '@astrojs/sitemap';
 import react from "@astrojs/react";
 import svelte from "@astrojs/svelte";
-import { remarkCodeDataTitles, rehypeCodeAddTitles, remarkAddMissingCodeTitles, rehypeHeadingIds, rehypeCopyCodeButton } from 'markdown-plugins'
+import {
+  remarkCodeDataTitles,
+  remarkAddMissingCodeTitles,
+  remarkCallout,
+  rehypeCodeAddTitles,
+  rehypeHeadingIds,
+  rehypeCopyCodeButton
+} from 'markdown-plugins'
 import rehypeShiki from 'rehype-shiki';
+import remarkDirective from 'remark-directive';
 
 const defaultMarkdownLayout = () => {
   return function (_, file) {
@@ -21,8 +29,10 @@ export default defineConfig({
   markdown: {
     remarkPlugins: [
       defaultMarkdownLayout,
+      remarkDirective,
+      remarkCallout,
       remarkCodeDataTitles,
-      remarkAddMissingCodeTitles
+      remarkAddMissingCodeTitles,
     ],
     rehypePlugins: [
       rehypeCodeAddTitles,
