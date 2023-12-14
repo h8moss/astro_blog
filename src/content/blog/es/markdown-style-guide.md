@@ -290,3 +290,15 @@ A secondary
 :::callout{.accent}
 An accent
 :::
+
+## Files
+
+It is possible to pass files for download using the following syntax:
+
+```md
+::file{p="/blog-placeholder-1.jpg" t="file.jpg"}
+```
+
+which turns into:
+
+::file{p="/blog-placeholder-1.jpg" t="file.jpg"}
