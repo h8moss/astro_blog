@@ -7,6 +7,7 @@ import {
   remarkCodeDataTitles,
   remarkAddMissingCodeTitles,
   remarkCallout,
+  remarkDownloadFile,
   rehypeCodeAddTitles,
   rehypeHeadingIds,
   rehypeCopyCodeButton
@@ -33,6 +34,7 @@ export default defineConfig({
       remarkCallout,
       remarkCodeDataTitles,
       remarkAddMissingCodeTitles,
+      [remarkDownloadFile, { materialIcon: 'file_save' }],
     ],
     rehypePlugins: [
       rehypeCodeAddTitles,
