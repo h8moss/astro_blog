@@ -5,7 +5,8 @@
 	"scripts": {
 		"dev": "astro dev",
 		"start": "astro dev",
-		"build": "astro build",
+		"build-markdown-plugins": "cd markdown-plugins && npm run build && cd ..",
+		"build": "npm run build-markdown-plugins && astro build",
 		"preview": "astro preview",
 		"astro": "astro"
 	},
