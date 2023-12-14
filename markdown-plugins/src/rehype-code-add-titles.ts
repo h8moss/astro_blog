@@ -29,13 +29,15 @@ const rehypeCodeAddTitles: Plugin<[], Root> = () => {
 
 			if (!child) return;
 
-			const title =
-				child.properties["data-title"] || child.properties.dataTitle; // I dont know why, but in astro it gets translated to dataTitle
+			const properties = node.properties || (node.properties = {});
+			const childProperties = child.properties || (child.properties = {});
+
+			const title = childProperties["data-title"] || childProperties.dataTitle; // I dont know why, but in astro it gets translated to dataTitle
 
 			if (!title || typeof title !== "string") return;
 
 			node.tagName = "div";
-			node.properties["class"] = "code-container";
+			properties["class"] = "code-container";
 			node.children = [h("p", title), h("pre", child)];
 
 			return SKIP; // To avoid going into an infinite loop
