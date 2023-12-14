@@ -180,18 +180,24 @@ const { frontmatter } = Astro.props;
 					color: #202020;
 				}
 
-				/*
-					- Note primary
-					- Info blue
-					- Question blue
-					- Summary cyan
-					- Danger red
-					- Tip cyan
-					- Success green
-					- Example yellow
-				*/
-			}
+				:global(button.file-download) {
+					border: none;
+					background-color: var(--secondary);
+					color: var(--text);
+					margin: 1rem auto;
+					padding: 0.5rem;
+					display: block;
 
+					:global(p) {
+						font-size: 0.75rem;
+						text-align: center;
+					}
+					:global(span) {
+						font-size: 3rem;
+						margin: 0.25rem;
+					}
+				}
+			}
 			h1 {
 				padding: 2rem;
 			}
@@ -268,19 +274,42 @@ const { frontmatter } = Astro.props;
 		</style>
 
 		<script>
-			const codeBlocks = document.querySelectorAll("pre");
-			for (const code of codeBlocks) {
-				const btn = code.children[code.children.length - 1];
-				const content = code.children[0].textContent;
-				btn.addEventListener("click", () => {
-					navigator.clipboard.writeText(content || "").then(() => {
-						btn.textContent = "Copied!";
-						setTimeout(() => {
-							btn.textContent = "Copy";
-						}, 5000);
+			const listenToCopyCode = () => {
+				const codeBlocks = document.querySelectorAll("pre");
+				for (const code of codeBlocks) {
+					const btn = code.lastChild!;
+					const content = code.children[0].textContent;
+					btn.addEventListener("click", () => {
+						navigator.clipboard.writeText(content || "").then(() => {
+							btn.textContent = "Copied!";
+							setTimeout(() => {
+								btn.textContent = "Copy";
+							}, 5000);
+						});
 					});
-				});
-			}
+				}
+			};
+			listenToCopyCode();
+			document.addEventListener("astro:after-swap", listenToCopyCode);
+		</script>
+		<script>
+			const listenToFileDownload = () => {
+				const fileDownloadButtons = document.querySelectorAll(".file-download");
+				for (const button of fileDownloadButtons) {
+					button.addEventListener("click", (e) => {
+						const href = button.getAttribute("data-path");
+						const download = button.lastChild?.textContent;
+						if (href && download) {
+							Object.assign(document.createElement("a"), {
+								href,
+								download
+							}).click();
+						}
+					});
+				}
+			};
+			listenToFileDownload();
+			document.addEventListener("astro:after-swap", listenToFileDownload);
 		</script>
 	</Fragment>
 </BaseLayout>
