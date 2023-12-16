@@ -1,7 +1,8 @@
 ---
 import ThemePicker from "./ThemePicker.svelte";
 
-const { locale } = Astro.params;
+let { locale } = Astro.params;
+if (!locale) locale = "en";
 ---
 
 <nav transition:persist>
