@@ -244,17 +244,6 @@ const { frontmatter } = Astro.props;
 					}
 				}
 			}
-			:global(:root[data-theme="light"]) {
-				:global(div.heading-div > a > img) {
-					filter: hue-rotate(70deg) saturate(70%) brightness(2.5);
-				}
-			}
-
-			:global(:root[data-theme="dark"]) {
-				:global(div.heading-div > a > img) {
-					filter: hue-rotate(60deg) saturate(60%) brightness(4);
-				}
-			}
 
 			@media screen and (max-width: 500px) {
 				.content {
@@ -272,9 +261,8 @@ const { frontmatter } = Astro.props;
 						}
 					}
 
-					:global(div.heading-div img) {
-						width: 20px;
-						height: 20px;
+					::global(div.heading-div span) {
+						font-size: 2rem;
 					}
 				}
 			}
