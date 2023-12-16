@@ -1,0 +1,50 @@
+---
+import FloatingBlob from "../components/FloatingBlob.astro";
+import BaseLayout from "../layouts/BaseLayout.astro";
+---
+
+<BaseLayout title="404">
+	<Fragment slot="before-content">
+		<FloatingBlob />
+	</Fragment>
+	<div class="content">
+		<p class="code">404</p>
+		<h1>Are you lost?</h1>
+		<p>Could not find the page you are looking for</p>
+		<a href="/">Back to the blog</a>
+	</div>
+</BaseLayout>
+
+<style>
+	a {
+		width: fit-content;
+		margin: auto;
+	}
+
+	.content {
+		display: flex;
+		flex-direction: column;
+		text-align: center;
+	}
+
+	.spacer {
+		height: 10rem;
+	}
+
+	p.code {
+		font-size: 8rem;
+		color: var(--background);
+		background-color: var(--accent-transparent);
+		padding: 1rem;
+		width: fit-content;
+		margin: auto;
+
+		border-radius: 0.5rem;
+	}
+
+	@media screen and (max-width: 800px) {
+		p.code {
+			color: var(--text);
+		}
+	}
+</style>
