@@ -1,0 +1,78 @@
+---
+import FloatingBlob from "../components/FloatingBlob.astro";
+import BaseLayout from "../layouts/BaseLayout.astro";
+---
+
+<BaseLayout title="404">
+	<Fragment slot="before-content">
+		<FloatingBlob />
+	</Fragment>
+	<div class="content">
+		<!--<p class="code">404</p> -->
+		<svg viewBox="0 0 300 100" aria-labelled-by="svg-404-id" role="img">
+			<title id="svg-404-id">Code 404</title>
+			<defs>
+				<mask id="text-mask" x="0" y="0" width="100" height="100">
+					<rect x="0" y="0" width="100%" height="100%" fill="#fff"> </rect>
+					<text
+						y="90"
+						x="50"
+						font-family="Helvetica"
+						font-weight="bold"
+						font-size="7rem"
+						fill="#000">404</text
+					>
+				</mask>
+			</defs>
+
+			<g mask="url(#text-mask)">
+				<rect x="0" y="0" width="100%" height="100%"> </rect>
+			</g>
+		</svg>
+		<h1>Are you lost?</h1>
+		<p>Could not find the page you are looking for</p>
+		<a href="/">Back to the blog</a>
+	</div>
+</BaseLayout>
+
+<style>
+	a {
+		width: fit-content;
+		margin: auto;
+	}
+
+	.content {
+		display: flex;
+		flex-direction: column;
+		text-align: center;
+	}
+
+	.spacer {
+		height: 10rem;
+	}
+
+	p.code {
+		font-size: 8rem;
+		color: var(--background);
+		background-color: var(--accent-transparent);
+		padding: 1rem;
+		width: fit-content;
+		margin: auto;
+
+		border-radius: 0.5rem;
+	}
+
+	@media screen and (max-width: 800px) {
+		p.code {
+			color: var(--text);
+		}
+	}
+	svg {
+		width: 50%;
+		margin: auto;
+	}
+
+	g rect {
+		fill: var(--accent-transparent);
+	}
+</style>
