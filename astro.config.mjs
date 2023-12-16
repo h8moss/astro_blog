@@ -38,7 +38,7 @@ export default defineConfig({
     ],
     rehypePlugins: [
       rehypeCodeAddTitles,
-      [rehypeHeadingIds, { anchorImgSrc: '/link.png', anchorImgSize: 40 }],
+      [rehypeHeadingIds, { materialIcon: 'link' }],
       [rehypeShiki, {
         useBackground: false,
         theme: 'monokai'

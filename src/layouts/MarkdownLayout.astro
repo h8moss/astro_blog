@@ -227,8 +227,14 @@ const { frontmatter } = Astro.props;
 
 					transition-property: opacity;
 
-					:global(img) {
+					:global(span) {
+						color: var(--accent);
+						text-decoration: none;
+						font-size: 3rem;
 						margin: auto;
+					}
+					&:hover {
+						text-decoration: none;
 					}
 				}
 
