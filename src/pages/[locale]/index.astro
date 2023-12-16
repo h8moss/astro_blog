@@ -23,7 +23,7 @@ const blogs = await getCollection(
 );
 ---
 
-<BaseLayout title={i18n("index.title")}>
+<BaseLayout title={i18n("index.title")} description={i18n("index.description")}>
 	<FloatingBlob slot="before-content" />
 
 	<h1>{i18n("index.title")}</h1>
