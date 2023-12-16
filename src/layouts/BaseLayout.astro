@@ -17,8 +17,10 @@ const { title, padding = 2, description } = Astro.props;
 	<head>
 		<meta charset="utf-8" />
 		<title>{title}</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<meta name="description" content={description} />
-		<slot name="head" />
+
+		<link rel="icon" type="image/x-icon" href="/favicon.ico" />
 
 		<!--Adding google material icons -->
 		<link
@@ -26,9 +28,9 @@ const { title, padding = 2, description } = Astro.props;
 			href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
 		/>
 
-		<meta name="viewport" content="width=device-width, initial-scale=1" />
-
 		<ViewTransitions />
+
+		<slot name="head" />
 	</head>
 	<body>
 		<Navbar />
