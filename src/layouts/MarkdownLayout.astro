@@ -7,6 +7,7 @@ const { frontmatter } = Astro.props;
 <BaseLayout
 	title={frontmatter.title + " | blog.daniel-armenta.com"}
 	padding={0}
+	description={frontmatter.description}
 >
 	<img src={frontmatter.heroImage} transition:name={frontmatter.heroImage} />
 	<img src={frontmatter.heroImage} class="invisible" />

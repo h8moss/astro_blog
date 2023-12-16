@@ -5,10 +5,11 @@ import { ViewTransitions } from "astro:transitions";
 
 interface Props {
 	title: string;
+	description: string;
 	padding?: number;
 }
 
-const { title, padding = 2 } = Astro.props;
+const { title, padding = 2, description } = Astro.props;
 ---
 
 <!doctype html>
@@ -16,6 +17,7 @@ const { title, padding = 2 } = Astro.props;
 	<head>
 		<meta charset="utf-8" />
 		<title>{title}</title>
+		<meta name="description" content={description} />
 		<slot name="head" />
 
 		<!--Adding google material icons -->
