@@ -5,8 +5,8 @@ import { toString } from "hast-util-to-string";
 import { h } from "hastscript";
 
 interface Props {
-	anchorImgSrc: string;
-	anchorImgSize?: number;
+	materialIcon: string;
+	materialClass?: string;
 }
 
 const isHeading = (node: Node) => {
@@ -32,12 +32,12 @@ const intoID = (text: string) => {
 /**
  * Adds an anchor element with an image and an href to this element's id
  * @param parameter The only parameter passed is an object with the following keys:
- * * `anchorImgSrc: string`, the source of the image inside the anchor
- * * `anchorImgSize: number`, the size of the image inside the anchor
+ * * `materialIcon` The name of the [Material Icon](https://fonts.google.com/icons) to add as a child
+ * * `materialClass` The name of the material icon class, default is "material-symbols-outlined"
  */
 const rehypeHeadingIds: Plugin<[Props], Root> = ({
-	anchorImgSrc,
-	anchorImgSize = 16
+	materialIcon,
+	materialClass = "material-symbols-outlined"
 }) => {
 	const transform: Transformer<Root> = (tree) => {
 		visit(tree, isHeading, (node) => {
@@ -56,11 +56,7 @@ const rehypeHeadingIds: Plugin<[Props], Root> = ({
 				h(
 					"a",
 					{ href: `#${id}` },
-					h("img", {
-						src: anchorImgSrc,
-						width: anchorImgSize,
-						height: anchorImgSize
-					})
+					h("span", { class: materialClass }, materialIcon)
 				),
 				h(element.tagName, element.children)
 			];

@@ -40,7 +40,7 @@ const file = await remark()
 	.use(rehypeCodeAddTitles)
 	.use(rehypeStringify)
 	.use(rehypeCopyCodeButton)
-	.use(rehypeHeadingIds, { anchorImgSrc: "lmaoxd" })
+	.use(rehypeHeadingIds, { materialIcon: "lmaoxd" })
 	.process(text);
 
 console.log(text);
