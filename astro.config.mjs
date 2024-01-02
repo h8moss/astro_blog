@@ -11,7 +11,7 @@ import {
   rehypeCodeAddTitles,
   rehypeHeadingIds,
   rehypeCopyCodeButton
-} from 'markdown-plugins'
+} from 'markdown-plugins';
 import rehypeShiki from 'rehype-shiki';
 import remarkDirective from 'remark-directive';
 
@@ -34,17 +34,15 @@ export default defineConfig({
       remarkCallout,
       remarkCodeDataTitles,
       remarkAddMissingCodeTitles,
-      [remarkDownloadFile, { materialIcon: 'file_save' }],
+      [remarkDownloadFile, { materialIcon: 'file_save' }]
     ],
     rehypePlugins: [
       rehypeCodeAddTitles,
       [rehypeHeadingIds, { materialIcon: 'link' }],
-      [rehypeShiki, {
-        useBackground: false,
-        theme: 'monokai'
-      }], // Add custom syntax highlighting
+      [rehypeShiki, { useBackground: false, theme: 'monokai' }],
+      // Add custom syntax highlighting
       rehypeCopyCodeButton
     ],
-    syntaxHighlight: false, // Astro's syntax highlight kills rehypeCodeAddTitles
+    syntaxHighlight: false // Astro's syntax highlight kills rehypeCodeAddTitles
   }
 });
