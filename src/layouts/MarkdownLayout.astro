@@ -40,6 +40,7 @@ const { frontmatter } = Astro.props;
 
 				:global(h1, h2, h3, h4, h5, h6) {
 					color: var(--accent);
+					margin-bottom: 1rem;
 				}
 
 				:global(table, tr, td, th) {
@@ -155,7 +156,7 @@ const { frontmatter } = Astro.props;
 
 					:global(*) {
 						background-color: var(--code-bg);
-						tab-size: 4;
+						tab-size: 2;
 					}
 					:global(pre) {
 						margin: 0px;

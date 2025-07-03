@@ -97,7 +97,7 @@ The blockquote element represents content that is quoted from another source, op
 
 #### Syntax
 
-we can use 3 backticks ``` in new line and write snippet and close with 3 backticks on new line and to highlight language specific syntac, write one word of language name after first 3 backticks, for eg. html, javascript, css, markdown, typescript, txt, bash
+we can use 3 backticks ``` in new line and write snippet and close with 3 backticks on new line and to highlight language specific syntax, write one word of language name after first 3 backticks, for eg. html, javascript, css, markdown, typescript, txt, bash
 
 ````markdown
 ```html
@@ -352,7 +352,10 @@ let x: number = 100;
 In this final section, I want to list all of the changes I want to make to
 markdwon in the Future
 
-- [ ] titles in code blocks from this: `cpp[C++]` to `cpp C++` or `cpp [C++]` so the code editor's highlighter still recognizes the code.
+- [x] titles in code blocks from this: `cpp[C++]` to `cpp C++` or `cpp [C++]` so the code editor's highlighter still recognizes the code. (Turns out `c++ [C++]` is already an accepted way to give titles)
 - [ ] Automatic formatting in code using maybe prettier?
 - [x] Fix padding in code tabs, on certain screens it looks weird
 - [ ] A github action that checks grammar mistakes before allowing me to commit blog posts to the main branch
+- [ ] Comments, as in, markdown that can be seen in the source but is not rendered
+- [ ] Somehow add syntax highlighting to diff code
+- [ ] Automatically add pubDate and updateDate on frontmatter
