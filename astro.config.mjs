@@ -12,11 +12,11 @@ import {
   rehypeHeadingIds,
   rehypeCopyCodeButton
 } from 'markdown-plugins';
-import rehypeShiki from 'rehype-shiki';
 import remarkDirective from 'remark-directive';
+import rehypeShiki from 'rehype-shiki'
 
 const defaultMarkdownLayout = () => {
-  return function (_, file) {
+  return function(_, file) {
     file.data.astro.frontmatter.layout =
       file.data.astro.frontmatter.layout
       || "../../../layouts/MarkdownLayout.astro";
@@ -39,10 +39,18 @@ export default defineConfig({
     rehypePlugins: [
       rehypeCodeAddTitles,
       [rehypeHeadingIds, { materialIcon: 'link' }],
-      [rehypeShiki, { useBackground: false, theme: 'monokai' }],
       // Add custom syntax highlighting
+      [rehypeShiki, { useBackground: false, theme: 'monokai' }],
       rehypeCopyCodeButton
     ],
     syntaxHighlight: false // Astro's syntax highlight kills rehypeCodeAddTitles
+  },
+  vite: {
+    resolve: {
+      preserveSymlinks: true,
+    },
+    ssr: {
+      noExternal: ['markdown-plugins']
+    }
   }
 });
