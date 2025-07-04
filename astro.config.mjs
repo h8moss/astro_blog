@@ -52,5 +52,8 @@ export default defineConfig({
     ssr: {
       noExternal: ['markdown-plugins']
     }
+  },
+  build: {
+    format: "file"
   }
 });
