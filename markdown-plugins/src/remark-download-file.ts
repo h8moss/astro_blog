@@ -5,8 +5,8 @@ import { Root } from "mdast";
 import { h } from "hastscript";
 
 interface Props {
-	materialIcon: string;
-	materialClass?: string;
+  materialIcon: string;
+  materialClass?: string;
 }
 
 /**
@@ -18,29 +18,28 @@ interface Props {
  * * `materialIcon` The name of the [Material Icon](https://fonts.google.com/icons) to add as a child
  * * `materialClass` The name of the material icon class, default is "material-symbols-outlined"
  */
-const remarkDownloadFile: Plugin<[Props], Root> = ({
-	materialIcon,
-	materialClass = "material-symbols-outlined"
-}) => {
-	const transform: Transformer<Root> = (tree) => {
-		visit(tree, "leafDirective", (node) => {
-			if (node.name !== "file") return;
+export default function remarkDownloadFile({
+  materialIcon,
+  materialClass = "material-symbols-outlined"
+}: Props) {
+  const transform: Transformer<Root> = (tree) => {
+    visit(tree, "leafDirective", (node) => {
+      if (node.name !== "file") return;
 
-			const attributes = node.attributes || (node.attributes = {});
-			const data = node.data || (node.data = {});
+      const attributes = node.attributes || (node.attributes = {});
+      const data = node.data || (node.data = {});
 
-			const { p: path, t: title } = attributes;
+      const { p: path, t: title } = attributes;
 
-			data.hName = "button";
-			data.hProperties = { class: "file-download", "data-path": path };
-			data.hChildren = [
-				h("span", { class: materialClass }, materialIcon),
-				h("p", title)
-			];
-		});
-	};
+      data.hName = "button";
+      data.hProperties = { class: "file-download", "data-path": path };
+      data.hChildren = [
+        h("span", { class: materialClass }, materialIcon),
+        h("p", title)
+      ];
+    });
+  };
 
-	return transform;
+  return transform;
 };
 
-export default remarkDownloadFile;

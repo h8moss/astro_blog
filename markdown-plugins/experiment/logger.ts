@@ -5,17 +5,17 @@ import { visitParents } from "unist-util-visit-parents";
 import type { Root } from "mdast";
 
 const logger: Plugin<[string | undefined], Root> = (test = undefined) => {
-	const transform: Transformer<Root> = (tree) => {
-		visitParents(tree, (node, ancestors) => {
-			if (test && !is(node, test)) return;
+  const transform: Transformer<Root> = (tree) => {
+    visitParents(tree, (node, ancestors) => {
+      if (test && !is(node, test)) return;
 
-			let data = node.data || (node.data = {});
+      let data = node.data || (node.data = {});
 
-			let properties = data.hProperties || (data.hProperties = {});
-		});
-	};
+      let properties = data.hProperties || (data.hProperties = {});
+    });
+  };
 
-	return transform;
+  return transform;
 };
 
 export default logger;

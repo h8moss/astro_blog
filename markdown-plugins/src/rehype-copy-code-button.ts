@@ -7,23 +7,21 @@ import { h } from "hastscript";
  * Adds a button.copy-button element as child of all pre elements
  * The button does nothing by default and must be listened to with Javascript
  */
-const rehypeCopyCodeButton: Plugin<[], Root> = () => {
-	const transform: Transformer<Root> = (tree) => {
-		visit(tree, { tagName: "pre" }, (node) => {
-			node.children = [
-				...node.children,
-				h(
-					"button",
-					{
-						class: "copy-button"
-					},
-					"Copy"
-				)
-			];
-		});
-	};
+export default function rehypeCopyCodeButton() {
+  const transform: Transformer<Root> = (tree) => {
+    visit(tree, { tagName: "pre" }, (node) => {
+      node.children = [
+        ...node.children,
+        h(
+          "button",
+          {
+            class: "copy-button"
+          },
+          "Copy"
+        )
+      ];
+    });
+  };
 
-	return transform;
+  return transform;
 };
-
-export default rehypeCopyCodeButton;

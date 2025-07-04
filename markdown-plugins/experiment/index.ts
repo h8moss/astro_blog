@@ -19,7 +19,7 @@ let x = 100;
 
 \`\`\`ts
 let x = 100;
-\`\`\` 
+\`\`\`
 # Hello h1
 ## Hello h2
 ### Hello h2
@@ -31,17 +31,17 @@ ipsum.
 `;
 
 const file = await remark()
-	.use(remarkDirective)
-	.use(remarkCodeDataTitles)
-	.use(remarkAddMissingCodeTitles)
-	.use([logger])
-	.use(remarkCallout)
-	.use(remarkRehype)
-	.use(rehypeCodeAddTitles)
-	.use(rehypeStringify)
-	.use(rehypeCopyCodeButton)
-	.use(rehypeHeadingIds, { materialIcon: "lmaoxd" })
-	.process(text);
+  .use(remarkDirective)
+  .use(remarkCodeDataTitles)
+  .use(remarkAddMissingCodeTitles)
+  .use([logger])
+  .use(remarkCallout)
+  .use(remarkRehype)
+  .use(rehypeCodeAddTitles)
+  .use(rehypeStringify)
+  .use(rehypeCopyCodeButton)
+  .use(rehypeHeadingIds, { materialIcon: "lmaoxd" })
+  .process(text);
 
 console.log(text);
 console.log("------");

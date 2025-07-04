@@ -3,31 +3,31 @@ import { Plugin, Transformer } from "unified";
 import type { Root, Code } from "mdast";
 
 const getLangAndTitle = (
-	node: Code
+  node: Code
 ): [string | undefined, string | undefined] => {
-	const meta = node.meta;
-	let lang = node.lang;
+  const meta = node.meta;
+  let lang = node.lang;
 
-	if (!lang) {
-		return [undefined, undefined];
-	}
+  if (!lang) {
+    return [undefined, undefined];
+  }
 
-	let title = lang;
-	let fullLang = lang;
+  let title = lang;
+  let fullLang = lang;
 
-	if (meta) {
-		fullLang += " " + meta;
-		node.meta = null;
-	}
+  if (meta) {
+    fullLang += " " + meta;
+    node.meta = null;
+  }
 
-	if (fullLang.includes("[") && fullLang.includes("]")) {
-		const openingIndex = fullLang.indexOf("[");
-		const closingIndex = fullLang.indexOf("]");
-		title = fullLang.substring(openingIndex + 1, closingIndex);
-		lang = fullLang.substring(0, openingIndex);
-	}
+  if (fullLang.includes("[") && fullLang.includes("]")) {
+    const openingIndex = fullLang.indexOf("[");
+    const closingIndex = fullLang.indexOf("]");
+    title = fullLang.substring(openingIndex + 1, closingIndex);
+    lang = fullLang.substring(0, openingIndex);
+  }
 
-	return [lang, title];
+  return [lang, title];
 };
 
 /**
@@ -39,22 +39,21 @@ let someCode = 100;
 ````
 To add a `data-title="my code"` attribute to the code html code block
  */
-const remarkCodeDataTitles: Plugin<[], Root> = () => {
-	const transform: Transformer<Root> = (tree) => {
-		visit(tree, "code", (node) => {
-			const data = node.data || ((node.data = {}) as any);
-			const properties = data.hProperties || (data.hProperties = {});
+export default function remarkCodeDataTitles() {
+  const transform: Transformer<Root> = (tree) => {
+    visit(tree, "code", (node) => {
+      const data = node.data || (node.data = {});
+      const properties = data.hProperties || (data.hProperties = {});
 
-			const [lang, title] = getLangAndTitle(node);
+      const [lang, title] = getLangAndTitle(node);
 
-			if (!lang || !title) return;
+      if (!lang || !title) return;
 
-			properties["data-title"] = title;
-			node.lang = lang;
-		});
-	};
+      properties["data-title"] = title;
+      node.lang = lang;
+    });
+  };
 
-	return transform;
+  return transform;
 };
 
-export default remarkCodeDataTitles;

@@ -12,24 +12,23 @@ import { h } from "hastscript";
  * :::
  * ```
  */
-const remarkCallout: Plugin<[], Root> = () => {
-	const transform: Transformer<Root> = (tree) => {
-		visit(tree, (node) => {
-			if (node.type !== "containerDirective") return;
-			if (node.name !== "callout") return;
+export default function remarkCallout() {
+  const transform: Transformer<Root> = (tree) => {
+    visit(tree, (node) => {
+      if (node.type !== "containerDirective") return;
+      if (node.name !== "callout") return;
 
-			const data = node.data || (node.data = {});
+      const data = node.data || (node.data = {});
 
-			data.hName = "div";
-			const attr = (node.attributes || {}) && {
-				class: (node.attributes?.class || "") + " callout",
-				"data-title": node.attributes?.t || undefined
-			};
-			data.hProperties = h("div", attr).properties;
-		});
-	};
+      data.hName = "div";
+      const attr = (node.attributes || {}) && {
+        class: (node.attributes?.class || "") + " callout",
+        "data-title": node.attributes?.t || undefined
+      };
+      data.hProperties = h("div", attr).properties;
+    });
+  };
 
-	return transform;
+  return transform;
 };
 
-export default remarkCallout;
