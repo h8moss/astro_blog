@@ -1,34 +1,34 @@
 {
-	"name": "",
-	"type": "module",
-	"version": "0.0.1",
-	"scripts": {
-		"dev": "astro dev",
-		"start": "astro dev",
-		"build-markdown-plugins": "cd markdown-plugins && npm run build && cd ..",
-		"build": "npm run build-markdown-plugins && astro build",
-		"preview": "astro preview",
-		"astro": "astro"
-	},
-	"dependencies": {
-		"@astrojs/mdx": "^1.1.5",
-		"@astrojs/react": "^3.0.3",
-		"@astrojs/rss": "^3.0.0",
-		"@astrojs/sitemap": "^3.0.1",
-		"@astrojs/svelte": "^4.0.3",
-		"@types/react": "^18.2.29",
-		"@types/react-dom": "^18.2.13",
-		"astro": "^3.3.0",
-		"markdown-plugins": "file:markdown-plugins",
-		"react": "^18.2.0",
-		"react-dom": "^18.2.0",
-		"rehype-shiki": "^0.0.9",
-		"remark-directive": "^2.0.0",
-		"sass": "^1.69.4",
-		"svelte": "^4.2.2"
-	},
-	"devDependencies": {
-		"prettier": "^3.0.3",
-		"prettier-plugin-astro": "^0.12.0"
-	}
+  "name": "",
+  "type": "module",
+  "version": "0.0.1",
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build-markdown-plugins": "cd markdown-plugins && npm run build && cd ..",
+    "build": "npm run build-markdown-plugins && astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "@astrojs/mdx": "^4.3.0",
+    "@astrojs/react": "^4.3.0",
+    "@astrojs/rss": "^3.0.0",
+    "@astrojs/sitemap": "^3.0.1",
+    "@astrojs/svelte": "^7.1.0",
+    "@types/react": "^18.2.29",
+    "@types/react-dom": "^18.2.13",
+    "astro": "^5.11.0",
+    "markdown-plugins": "file:markdown-plugins",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "rehype-shiki": "^0.0.9",
+    "remark-directive": "^4.0.0",
+    "sass": "^1.69.4",
+    "svelte": "^5.35.1"
+  },
+  "devDependencies": {
+    "prettier": "^3.0.3",
+    "prettier-plugin-astro": "^0.12.0"
+  }
 }
