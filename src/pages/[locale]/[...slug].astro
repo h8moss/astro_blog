@@ -5,12 +5,21 @@ import locales from '../../i18n/locales';
 export async function getStaticPaths() {
 	return (await Promise.all(locales.flatMap(async locale => {
 		const posts = await getCollection('blog', (p) => p.id.startsWith(locale));
-		return posts.map((post) => ({
-			params: { slug: post.id.substring(3), locale },
-			props: post,
-		}));
+		return posts.map((post) => {
+
+	    const slugWithoutLocale = post.id.substring(locale.length + 1); // +1 for the '/'
+			const slug = slugWithoutLocale.replace(/\.mdx?$/, ''); // Remove .md or .mdx extension
+      return {
+        params: { 
+          slug, 
+          locale
+        },
+        props: post,
+      }
+		});
 	}))).flat()
 }
+
 type Props = CollectionEntry<'blog'>;
 
 const post = Astro.props;

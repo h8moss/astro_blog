@@ -29,8 +29,13 @@ const blogs = await getCollection(
 	<h1>{i18n("index.title")}</h1>
 	<div class="blog-list">
 		{
-			blogs.map((v) => (
-				<Card href={"/" + v.id}>
+       blogs.map((v) => {
+        const locale = Astro.params.locale as string;
+				const slugWithoutLocale = v.id.substring(locale.length + 1);
+				const slug = slugWithoutLocale.replace(/\.mdx?$/, '');
+				const href = `/${locale}/${slug}/`;
+
+       return (<Card href={href}>
 					<img src={v.data.heroImage} transition:name={v.data.heroImage} />
 					<span>{v.data.title}</span>
 					<Fragment slot="tags">
@@ -38,8 +43,8 @@ const blogs = await getCollection(
 							<span>{t}</span>
 						))}
 					</Fragment>
-				</Card>
-			))
+        </Card>);
+			})
 		}
 	</div>
 
