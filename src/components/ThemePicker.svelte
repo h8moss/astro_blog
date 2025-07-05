@@ -3,7 +3,7 @@
 	import { backInOut } from "svelte/easing";
 	import { tweened } from "svelte/motion";
 
-	let toggled = true;
+	let toggled = false;
 
 	const position = tweened(0, {
 		duration: 200,
@@ -23,7 +23,13 @@
 
 	const setSwitch = () => {
 		const theme = localStorage.getItem("theme");
-		toggled = theme === "light";
+		if (theme !== null) {
+			toggled = theme === "light";
+			document.documentElement.setAttribute("data-theme", theme);
+		} else {
+			toggled = false;
+			document.documentElement.setAttribute("data-theme", "dark");
+		}
 	};
 
 	onMount(() => {
