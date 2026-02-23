@@ -14,6 +14,7 @@ import {
 } from "markdown-plugins";
 import remarkDirective from "remark-directive";
 import rehypeShiki from "@shikijs/rehype";
+import remarkBreaks from "remark-breaks";
 
 const defaultMarkdownLayout = () => {
 	return function (_, file) {
@@ -25,10 +26,12 @@ const defaultMarkdownLayout = () => {
 
 // https://astro.build/config
 export default defineConfig({
-	site: "https://example.com",
+	site: "https://blog.daniel-armenta.xyz",
 	integrations: [mdx(), sitemap(), react(), svelte()],
 	markdown: {
+		breaks: true,
 		remarkPlugins: [
+			remarkBreaks,
 			defaultMarkdownLayout,
 			remarkDirective,
 			remarkCallout,
