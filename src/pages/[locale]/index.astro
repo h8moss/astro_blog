@@ -35,6 +35,10 @@ const blogs = await getCollection(
 				const slug = slugWithoutLocale.replace(/\.mdx?$/, '');
 				const href = `/${locale}/${slug}/`;
 
+        if (v.data.tags.some(t => t === 'beta')) {
+          return <></>
+        }
+
        return (<Card href={href}>
 					<img src={v.data.heroImage} transition:name={v.data.heroImage} />
 					<span>{v.data.title}</span>

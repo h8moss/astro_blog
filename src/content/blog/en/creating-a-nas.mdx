@@ -1,0 +1,71 @@
+---
+title: "I turned an old laptop into a NAS, here's what I learned."
+description: "I learned a lot this past month, as I found an old laptop, and repurposed it into a NAS for my everyday needs."
+pubDate: "Feb 22 2026"
+tags: ["Homelab", "NAS", "Linux"]
+---
+
+# Introduction
+
+About a month ago, I came across a couple of old laptops just gathering dust in my basement. I took a look at them and, while I decided they were absolutely not in conditions to run windows, I figured they were worth rescuing.
+In this post I will detail my journey to turn one of them into a truly useful NAS system for me and my family members, the problems I came across, the solutions I reached, and the lessons I learned along the way.
+
+## What even is a NAS
+
+A NAS, in it's most basic form, is just a relatively simple computer that does two things:
+
+1. Stores a lot of data.
+2. Makes that data available to the network.
+
+So in simple terms, it's just an external HardDrive you can access from any PC as long as you are in the same network, pretty handy, no?
+This may or may not sound exiting to you depending on who you are, but here is where it gets interesting:
+Since a NAS is a computer, it can also run certain software that allows it to do much more than a simple HDD would, there even is specific software purpose-built with these systems in mind.
+
+## Choosing an Operating System
+
+There are hundreds of Operating systems designed to turn a normal computer into a NAS. The most popular choice by far is a little thing called TrueNAS.
+Here's why I **didn't** go with it:
+
+TrueNAS is a spectacular OS, it's powerful, easy to use, and secure, but what it has in convenience, it loses in customization.
+It does not really expect you to see it for what it is: A linux distro. It doesn't want you SSHing, setting ACLs, or really doing anything the web interface does not allow you to do.
+TrueNAS is also designed from the ground-up with the objective of preventing data-loss, a noble objective, but one that is very outside of the scope of a 500GB, single-drive NAS experiment. 
+On the other hand, OpenMediaVault, or OMV, is an open source NAS operating system built on top of Debian, it has a very nice webUI, not as nice as TrueNAS, but what it lacks in polish it makes up for in transparency: Nothing is obscured from me as the admin, and if I ever need to do anything that is not possible to do from the WebUI, it encourages me to SSH into it at any time.
+OMV is also designed in a way that allows it to run from a USB, which is nice, as it means I don't have to install the OS in the 500GB SSD, and instead can dedicate that to storage.
+
+## Setting everything up
+
+After going through the installation process of OMV, which was remarkably simple, I now have a completley bare system ready to be setup.
+A complete explanation of the setup process is beyond the scope of this article, but suffice it to say, it was pretty simple, if you are interested, I urge you to read [OMV's documentation](https://docs.openmediavault.org/en/8.x/index.html).
+
+The general process was to first setup the main 500GB disk for general usage, then setup a simple file system on it, and enable a shared folder in it.
+Then I created a user for each member of my family, including myself, whom I gave admin and ssh privileges.
+
+This left me with a nice shared 500GB of storage for my entire family, and the possibility of installing the software I mentioned earlier, specifically, I installed __Jellyfin__ for watching movies, __Immich__ for storing important pictures and various other things.
+FileBrowser was also a nice additon, as it allowed me to access the shares from a phone, it also helped my family quite a bit, as they kept forgetting how SMB shares work.
+
+Now this is a pretty nice build already, however it does have the one issue that it is only possible to access it from my family home, which poses a problem when anybody is doing literally anything other than staying home. This setup was usable, but it wasn't solving any real problems.
+
+## Crossing the out-of-home hurdle
+
+The hardest part of this whole build was allowing access the server from outside home. I care quite a bit about privacy and security; as such, it did not seem to me like a good idea to give the internet unrestricted access to my family's most important files.
+
+If you ask around online, people will tell you that the perfect solution to this problem is a VPN. It allows you to access a machine, in this instance, the NAS, as if it was in the same network as you from anywhere in the world. It would be exactly what I need, except for one problem: While I am one of the users of this machine, I would not be the only one, and while I could easily figure out a VPN, could my sister? Could my mom? What about their work laptops? They already had trouble with normal SMB shares, now I wanted them to install and run a completley new program to access it? On all their devices? Forever?
+
+Another popular idea is to simply port-forward the services, this meant that I could setup the NAS so it was accessible by visiting my public IP address, then there are services like DuckDNS that would've allowed me to map the IP into an easy-to-remember domain. This opens a whole new can-of-worms in the sense of cybersecurity. And I knew I could not trust my users (my family) to setup good passwords.
+
+The final idea I saw actually had some merit; using a cloudflare tunnel, which would allow me the same power as port-forwarding, with the added security of going through cloudflare, which offers pretty good security. The only problem with this approach is that some services, mainly Jellyfin, Syncthing, and Immich, were not designed work through a tunnel, and they would cause problems.
+
+The solution I found was, in hindsight, pretty obvious, I did not have to choose between any of the options, I could use them in conjunction, specifically, using a VPN for me, my devices, and some select family devices (like my sister's iPad, so she can watch Jellyfin), and also exposing FileBrowser to the internet through a cloudflare tunnel, which would allow my family members to access their files from anywhere, at any time, and without having to remember some obscure feature that they don't otherwise use.
+
+## Lessons learned
+
+This little NAS experiment went from shitz-and-giggles to genuenly useful piece of hardware at home, now all of mine and my family's most important documents are backed up in our very own _cloud_.
+
+While I learned a lot of system administration and linux during this month-long journey, my main takeaway is that not because something is scuffed, or weird, it isn't useful.
+
+The whole thing is running on a laptop under my desk that, I assure you, is much less powerful than your run of the mill Synology NAS. But it works.
+The Web UI is not as pretty as one from a store-bought NAS, but it works.
+I have setup three completely redundant ways to access the files, but it works.
+Sometimes I need to SSH into the machine and manually edit the ACLs, but it works.
+
+It works so well, in fact, that after a few tweaks, I ended up almost completely ditching my laptop in favour of my tablet. But that's a story for another day.
