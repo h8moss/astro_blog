@@ -41,16 +41,16 @@ A complete explanation of the setup process is beyond the scope of this article,
 The general process was to first setup the main 500GB disk for general usage, then setup a simple file system on it, and enable a shared folder in it.
 Then I created a user for each member of my family, including myself, whom I gave admin and ssh privileges.
 
-This left me with a nice shared 500GB of storage for my entire family, and the possibility of installing the software I mentioned earlier, specifically, I installed __Jellyfin__ for watching movies, __Immich__ for storing important pictures and various other things.
+This left me with a nice shared 500GB of storage for my entire family, and the possibility of installing the software I mentioned earlier, specifically, I installed __Jellyfin__ for watching movies and __Immich__ for storing important pictures.
 FileBrowser was also a nice additon, as it allowed me to access the shares from a phone, it also helped my family quite a bit, as they kept forgetting how SMB shares work.
 
 Now this is a pretty nice build already, however it does have the one issue that it is only possible to access it from my family home, which poses a problem when anybody is doing literally anything other than staying home. This setup was usable, but it wasn't solving any real problems.
 
 ## Crossing the out-of-home hurdle
 
-The hardest part of this whole build was allowing access the server from outside home. I care quite a bit about privacy and security; as such, it did not seem to me like a good idea to give the internet unrestricted access to my family's most important files.
+The hardest part of this whole build was allowing access to the NAS from outside my home. I care quite a bit about privacy and security, which is why it did not seem to me like a particularly good idea to give the internet unrestricted access to my family's most important files.
 
-If you ask around online, people will tell you that the perfect solution to this problem is a VPN. It allows you to access a machine, in this instance, the NAS, as if it was in the same network as you from anywhere in the world. It would be exactly what I need, except for one problem: While I am one of the users of this machine, I would not be the only one, and while I could easily figure out a VPN, could my sister? Could my mom? What about their work laptops? They already had trouble with normal SMB shares, now I wanted them to install and run a completley new program to access it? On all their devices? Forever?
+If you ask around online, people will tell you that the perfect solution to this problem is a VPN. It allows you to access a machine, in this instance, the NAS, as if it was in the same network as you from anywhere in the world. It would be exactly what I need, except for one problem: I am not the only person using this machine. While I could easily figure out a VPN, could my sister? Could my mom? What about their work laptops where they can't install software? They already had trouble with normal SMB shares, now I wanted them to install and run a completley new program to access it? On all their devices? Forever?
 
 Another popular idea is to simply port-forward the services, this meant that I could setup the NAS so it was accessible by visiting my public IP address, then there are services like DuckDNS that would've allowed me to map the IP into an easy-to-remember domain. This opens a whole new can-of-worms in the sense of cybersecurity. And I knew I could not trust my users (my family) to setup good passwords.
 
@@ -60,13 +60,13 @@ The solution I found was, in hindsight, pretty obvious, I did not have to choose
 
 ## Lessons learned
 
-This little NAS experiment went from shitz-and-giggles to genuenly useful piece of hardware at home, now all of mine and my family's most important documents are backed up in our very own _cloud_.
+This little NAS experiment went from shits-and-giggles to genuinely useful piece of hardware at home, now all of mine and my family's most important documents are backed up in our very own _cloud_.
 
 While I learned a lot of system administration and linux during this month-long journey, my main takeaway is that not because something is scuffed, or weird, it isn't useful.
 
-The whole thing is running on a laptop under my desk that, I assure you, is much less powerful than your run of the mill Synology NAS. But it works.
+The whole thing is running on a laptop under my desk that, I assure you, is much less powerful than your run of the mill Synology NAS, but it works.
 The Web UI is not as pretty as one from a store-bought NAS, but it works.
 I have setup three completely redundant ways to access the files, but it works.
-Sometimes I need to SSH into the machine and manually edit the ACLs, but it works.
+Sometimes I need to SSH into the NAS to manually edit the ACLs, but it works.
 
 It works so well, in fact, that after a few tweaks, I ended up almost completely ditching my laptop in favour of my tablet. But that's a story for another day.
