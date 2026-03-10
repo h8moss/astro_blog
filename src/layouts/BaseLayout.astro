@@ -10,6 +10,8 @@ interface Props {
 }
 
 const { title, padding = 2, description } = Astro.props;
+
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 ---
 
 <!doctype html>
@@ -21,6 +23,8 @@ const { title, padding = 2, description } = Astro.props;
 		<meta name="description" content={description} />
 
 		<link rel="icon" type="image/x-icon" href="/favicon.ico" />
+
+    <link rel="canonical" href={canonicalURL} />
 
 		<!--Adding google material icons -->
 		<link
