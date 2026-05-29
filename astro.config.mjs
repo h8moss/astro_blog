@@ -27,7 +27,13 @@ const defaultMarkdownLayout = () => {
 // https://astro.build/config
 export default defineConfig({
 	site: "https://blog.daniel-armenta.xyz",
-	integrations: [mdx(), sitemap(), react(), svelte()],
+	integrations: [mdx(), sitemap({
+    filter: (page) => {
+      return page !== 'https://blog.daniel-armenta.xyz/'
+      || page.startsWith('https://blog.daniel-armenta.xyz/en/beta-')
+      || page.startsWith('https://blog.daniel-armenta.xyz/es/beta-')
+    }
+  }), react(), svelte()],
 	markdown: {
 		breaks: true,
 		remarkPlugins: [
